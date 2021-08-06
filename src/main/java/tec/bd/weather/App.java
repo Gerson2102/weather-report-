@@ -8,6 +8,7 @@ public class App
 {
     public static void main( String[] args )
     {
+
         CommandLine cmd = new CommandLine(new MainCommand());
         cmd.setExecutionStrategy(new CommandLine.RunAll()); // default is RunLast
         cmd.execute(args);

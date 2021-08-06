@@ -9,15 +9,18 @@ import java.util.Map;
 public class OpenWeather extends BaseWeatherProvider<OpenWeatherReport> {
 
     private IOpenWeatherResource openWeatherResource;
+    private IApiKeyResolver apiKeyResolver;
 
-    public OpenWeather(IOpenWeatherResource openWeatherResource) {
+    public OpenWeather(IOpenWeatherResource openWeatherResource, IApiKeyResolver apiKeyResolver) {
         this.openWeatherResource = openWeatherResource;
+        this.apiKeyResolver = apiKeyResolver;
     }
 
     @Override
     public Report byCity(String city) {
         try {
-            var options = Map.of("q", city, "appId", "c559e941a0da745aa0139aef272bf16c");
+//            var options = Map.of("q", city, "appId", "c559e941a0da745aa0139aef272bf16c");
+            var options = this.queryStringOptions(city);
             Call<OpenWeatherReport> openWeatherReportCall = this.openWeatherResource.get(options);
             OpenWeatherReport openWeatherReport = openWeatherReportCall.execute().body();
             return this.fromProviderReport(openWeatherReport);
@@ -42,5 +45,9 @@ public class OpenWeather extends BaseWeatherProvider<OpenWeatherReport> {
         report.setMaxTemperature(providerReport.getMain().getTempMax());
         report.setMinTemperature(providerReport.getMain().getTempMin());
         return report;
+    }
+
+    private Map<String, String> queryStringOptions(String city) {
+        return Map.of("q", city, "appId", this.apiKeyResolver.resolveKey());
     }
 }

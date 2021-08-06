@@ -6,33 +6,15 @@ import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import retrofit2.Call;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import tec.bd.weather.openweather.IOpenWeatherResource;
-import tec.bd.weather.openweather.OpenWeather;
-import tec.bd.weather.openweather.OpenWeatherReport;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.BDDMockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class OpenWeatherTest {
-
-
-    private static IOpenWeatherResource createResource(HttpUrl baseUrl) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(baseUrl)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit.create(IOpenWeatherResource.class);
-    }
-
 
     @Test
     public void whenCityIsPassedAsParameter_thenGetReport() throws Exception {
@@ -87,16 +69,32 @@ public class OpenWeatherTest {
         HttpUrl baseUrl = server.url("/data/2.5/weather/");
 
         IOpenWeatherResource openWeatherResource = createResource(baseUrl);
-        OpenWeather openWeather = new OpenWeather(openWeatherResource);
+        IApiKeyResolver apiKeyResolver = mock(IApiKeyResolver.class);
+        OpenWeather openWeather = new OpenWeather(openWeatherResource, apiKeyResolver);
+
+        given(apiKeyResolver.resolveKey()).willReturn("test-api-key");
 
         var actual = openWeather.byCity("Alajuela");
+
+        verify(apiKeyResolver, times(1)).resolveKey();
 
         assertThat(actual).isNotNull();
 
         RecordedRequest request1 = server.takeRequest();
-        assertThat("/data/2.5/weather?q=Alajuela&appId=c559e941a0da745aa0139aef272bf16c").isEqualTo(request1.getPath());
+
+        assertThat(request1.getPath()).containsOnlyOnce("q=Alajuela");
+        assertThat(request1.getPath()).containsOnlyOnce("appId=test-api-key");
 
         server.shutdown();
+    }
+
+    private static IOpenWeatherResource createResource(HttpUrl baseUrl) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(IOpenWeatherResource.class);
     }
 
 }
