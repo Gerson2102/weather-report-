@@ -16,4 +16,8 @@ public class WeatherReport {
         return report;
     }
 
+    public Report getByZipCode(String zipCode) {
+        return null;
+    }
+
 }

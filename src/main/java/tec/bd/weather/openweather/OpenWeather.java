@@ -19,7 +19,6 @@ public class OpenWeather extends BaseWeatherProvider<OpenWeatherReport> {
     @Override
     public Report byCity(String city) {
         try {
-//            var options = Map.of("q", city, "appId", "c559e941a0da745aa0139aef272bf16c");
             var options = this.queryStringOptions(city);
             Call<OpenWeatherReport> openWeatherReportCall = this.openWeatherResource.get(options);
             OpenWeatherReport openWeatherReport = openWeatherReportCall.execute().body();
@@ -31,6 +30,7 @@ public class OpenWeather extends BaseWeatherProvider<OpenWeatherReport> {
 
     @Override
     public Report byZipCode(String zipCode) {
+        //TODO: aqui es la tarea
         return null;
     }
 
@@ -46,6 +46,8 @@ public class OpenWeather extends BaseWeatherProvider<OpenWeatherReport> {
         report.setMinTemperature(providerReport.getMain().getTempMin());
         return report;
     }
+
+    /*Builder Pattern*/
 
     private Map<String, String> queryStringOptions(String city) {
         return Map.of("q", city, "appId", this.apiKeyResolver.resolveKey());
