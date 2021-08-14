@@ -4,8 +4,9 @@ weather-report
 
 Aplicación para obtener el reporte del tiempo.
 
-Nombre:  
-Carnet:
+Nombre: Gerson Loaiza Vásquez
+
+Carnet: 2020207712
 
 Opciones:
 
