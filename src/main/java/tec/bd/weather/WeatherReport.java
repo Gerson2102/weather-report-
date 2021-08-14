@@ -17,7 +17,8 @@ public class WeatherReport {
     }
 
     public Report getByZipCode(String zipCode) {
-        return null;
+        var report = this.weatherProvider.byZipCode(zipCode);
+        return report;
     }
 
 }

@@ -29,9 +29,16 @@ public class OpenWeather extends BaseWeatherProvider<OpenWeatherReport> {
     }
 
     @Override
-    public Report byZipCode(String zipCode) {
+    public Report byZipCode(String zip_code) {
         //TODO: aqui es la tarea
-        return null;
+        try {
+            var options = this.queryStringOptions_zip_code(zip_code);
+            Call<OpenWeatherReport> openWeatherReportCall = this.openWeatherResource.get(options);
+            OpenWeatherReport openWeatherReport = openWeatherReportCall.execute().body();
+            return this.fromProviderReport(openWeatherReport);
+        } catch (Exception e) {
+            throw new RuntimeException("Error when calling remote provider", e);
+        }
     }
 
 
@@ -51,5 +58,9 @@ public class OpenWeather extends BaseWeatherProvider<OpenWeatherReport> {
 
     private Map<String, String> queryStringOptions(String city) {
         return Map.of("q", city, "appId", this.apiKeyResolver.resolveKey());
+    }
+
+    private Map<String, String> queryStringOptions_zip_code(String zip_code) {
+        return Map.of("zip", zip_code, "appId", this.apiKeyResolver.resolveKey());
     }
 }

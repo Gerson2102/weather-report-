@@ -3,14 +3,26 @@ package tec.bd.weather.model;
 public class Report {
 
     private String city;
+    private String zip_code;
     private float humidity;
     private float pressure;
     private float temperature;
+
+
+
     private float maxTemperature;
     private float minTemperature;
 
     public Report() {
 
+    }
+
+    public String getZip_code() {
+        return zip_code;
+    }
+
+    public void setZip_code(String zip_code) {
+        this.zip_code = zip_code;
     }
 
     public String getCity() {
