@@ -1,7 +1,6 @@
 weather-report
 ==============
-[![Java CI with Maven](https://github.com/martinicr/weather-report/actions/workflows/maven.yml/badge.svg?branch=main)](https://github.com/martinicr/weather-report/actions/workflows/maven.yml)  
-[![codecov](https://codecov.io/gh/martinicr/weather-report/branch/main/graph/badge.svg?token=4ZEHY5OH2N)](https://codecov.io/gh/martinicr/weather-report)
+[![Java CI with Maven](https://github.com/martinicr/weather-report/actions/workflows/maven.yml/badge.svg?branch=main)](https://github.com/martinicr/weather-report/actions/workflows/maven.yml)
 
 Aplicación para obtener el reporte del tiempo.
 
