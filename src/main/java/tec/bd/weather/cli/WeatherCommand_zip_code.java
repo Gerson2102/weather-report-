@@ -13,7 +13,7 @@ public class WeatherCommand_zip_code implements Runnable{
 
     private static ApplicationContext APP_CONTEXT = ApplicationContext.init();
 
-    @Parameters(paramLabel = "<zipCode code, country code>", description = "zipCode to be resolved")
+    @Parameters(paramLabel = "<zipCode code>", description = "zipCode to be resolved")
     private String zip_code;
 
     @Override
