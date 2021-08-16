@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import picocli.CommandLine;
 import tec.bd.weather.ApplicationContext;
 
-@CommandLine.Command(name = "imn-city", description = "Get weather forecast for city")
+@CommandLine.Command(name = "imn-city", description = "Get weather forecast for city IMN")
 public class IMNCityCommand implements Runnable{
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WeatherCommand.class);
