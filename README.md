@@ -13,5 +13,5 @@ Opciones:
 ```bash
 mvn clean install
 mvn exec:java -Dexec.args="city Alajuela"
-mvn exec:java -Dexec.args="zipCode 70601,cr"
+mvn exec:java -Dexec.args="zipCode 70601,"
 ```
