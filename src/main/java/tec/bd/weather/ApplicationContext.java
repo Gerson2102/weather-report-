@@ -2,6 +2,7 @@ package tec.bd.weather;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import tec.bd.weather.imn.IMNProvider;
 import tec.bd.weather.openweather.*;
 import tec.bd.weather.provider.IWeatherProvider;
 
@@ -18,6 +19,8 @@ public class ApplicationContext {
     private IWeatherProvider openWeatherProvider;
 
     private WeatherReport weatherReport;
+
+    private IMNProvider imnProvider;
 
 
     public ApplicationContext() {
@@ -39,6 +42,7 @@ public class ApplicationContext {
         applicationContext.openWeatherProvider =
                 initOpenWeatherProvider(applicationContext.openWeatherResource, applicationContext.apiKeyResolver);
         applicationContext.weatherReport = initWeatherReport(applicationContext.openWeatherProvider);
+        applicationContext.imnProvider = init_IMNProvider(applicationContext.openWeatherProvider);
         return applicationContext;
     }
 
@@ -68,6 +72,10 @@ public class ApplicationContext {
 
     private static WeatherReport initWeatherReport(IWeatherProvider weatherProvider) {
         return new WeatherReport(weatherProvider);
+    }
+
+    private static IMNProvider init_IMNProvider(IWeatherProvider weatherProvider) {
+        return new IMNProvider(weatherProvider);
     }
 
 
