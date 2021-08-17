@@ -7,7 +7,7 @@ import picocli.CommandLine.HelpCommand;
         name = "WeatherReport",
         subcommands = {
                 WeatherCommand.class,
-                WeatherCommand_zip_code.class,
+                ZipCodeCommand.class,
                 IMNCityCommand.class,
                 IMNZipCodeCommand.class,
                 HelpCommand.class },

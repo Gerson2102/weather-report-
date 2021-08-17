@@ -8,7 +8,7 @@ import tec.bd.weather.ApplicationContext;
 @CommandLine.Command(name = "imn-zip", description = "Get weather forecast by zipCode IMN")
 public class IMNZipCodeCommand implements Runnable{
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(WeatherCommand_zip_code.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ZipCodeCommand.class);
 
     private static ApplicationContext APP_CONTEXT = ApplicationContext.init();
 
