@@ -2,7 +2,7 @@ weather-report
 ==============
 [![Java CI with Maven](https://github.com/Gerson2102/weather-report/actions/workflows/maven.yml/badge.svg?branch=master)](https://github.com/Gerson2102/weather-report/actions/workflows/maven.yml)
 
-Aplicación para obtener el reporte del tiempo.
+Aplicación para obtener el reporte del clima.
 
 Nombre: Gerson Loaiza Vásquez
 
