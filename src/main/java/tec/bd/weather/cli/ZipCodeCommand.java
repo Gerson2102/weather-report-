@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import picocli.CommandLine;
 import tec.bd.weather.ApplicationContext;
 
-@CommandLine.Command(name = "zipCode", description = "Get weather forecast for zipCode")
+@CommandLine.Command(name = "zip", description = "Get weather forecast for zipCode")
 public class ZipCodeCommand implements Runnable{
 
         private static final Logger LOGGER = LoggerFactory.getLogger(ZipCodeCommand.class);
