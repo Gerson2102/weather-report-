@@ -8,7 +8,7 @@ import tec.bd.weather.ApplicationContext;
 @CommandLine.Command(name = "imn-city", description = "Get weather forecast for city IMN")
 public class IMNCityCommand implements Runnable{
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(WeatherCommand.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(IMNCityCommand.class);
 
     private static ApplicationContext APP_CONTEXT = ApplicationContext.init();
 

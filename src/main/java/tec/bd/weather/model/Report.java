@@ -7,9 +7,6 @@ public class Report {
     private float humidity;
     private float pressure;
     private float temperature;
-
-
-
     private float maxTemperature;
     private float minTemperature;
 
